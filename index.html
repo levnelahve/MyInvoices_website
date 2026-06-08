@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MyInvoices — Professional Invoicing for Freelancers</title>
+<meta name="description" content="Track time, create professional invoices, and get paid faster. MyInvoices is the simplest invoicing app for freelancers and independent professionals.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #0f0e0d;
+    --ink-muted: #6b6660;
+    --ink-faint: #b5b0aa;
+    --paper: #faf9f7;
+    --paper-warm: #f3f0eb;
+    --paper-card: #ffffff;
+    --accent: #1a6b4a;
+    --accent-light: #e8f5ee;
+    --accent-mid: #2d9e6e;
+    --border: #e8e4df;
+    --serif: 'Instrument Serif', Georgia, serif;
+    --sans: 'DM Sans', system-ui, sans-serif;
+    --radius: 12px;
+    --shadow: 0 1px 3px rgba(15,14,13,.06), 0 8px 24px rgba(15,14,13,.08);
+    --shadow-lg: 0 2px 8px rgba(15,14,13,.06), 0 24px 64px rgba(15,14,13,.12);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.6;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── Nav ── */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 5vw;
+    height: 64px;
+    background: rgba(250,249,247,.92);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: var(--serif);
+    font-size: 1.35rem;
+    color: var(--ink);
+    text-decoration: none;
+    letter-spacing: -.01em;
+  }
+  .nav-cta {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--ink);
+    color: #fff;
+    font-family: var(--sans);
+    font-size: .85rem;
+    font-weight: 500;
+    padding: 9px 20px;
+    border-radius: 100px;
+    text-decoration: none;
+    transition: background .18s, transform .14s;
+  }
+  .nav-cta:hover { background: var(--accent); transform: translateY(-1px); }
+
+  /* ── Hero ── */
+  .hero {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 100px 5vw 80px;
+    text-align: center;
+  }
+  .hero-eyebrow {
+    display: inline-block;
+    font-size: .78rem;
+    font-weight: 500;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: var(--accent-light);
+    padding: 5px 14px;
+    border-radius: 100px;
+    margin-bottom: 28px;
+  }
+  h1 {
+    font-family: var(--serif);
+    font-size: clamp(2.6rem, 6vw, 4.2rem);
+    line-height: 1.12;
+    letter-spacing: -.02em;
+    color: var(--ink);
+    margin-bottom: 24px;
+  }
+  h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+  .hero-sub {
+    font-size: 1.15rem;
+    color: var(--ink-muted);
+    max-width: 520px;
+    margin: 0 auto 44px;
+    font-weight: 300;
+    line-height: 1.7;
+  }
+  .hero-actions {
+    display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
+  }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--ink);
+    color: #fff;
+    font-family: var(--sans);
+    font-size: .95rem;
+    font-weight: 500;
+    padding: 14px 32px;
+    border-radius: 100px;
+    text-decoration: none;
+    transition: background .18s, transform .14s, box-shadow .18s;
+    box-shadow: 0 4px 16px rgba(15,14,13,.18);
+  }
+  .btn-primary:hover {
+    background: var(--accent);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(26,107,74,.28);
+  }
+  .btn-secondary {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: transparent;
+    color: var(--ink-muted);
+    font-family: var(--sans);
+    font-size: .95rem;
+    font-weight: 400;
+    padding: 14px 28px;
+    border-radius: 100px;
+    border: 1px solid var(--border);
+    text-decoration: none;
+    transition: border-color .18s, color .18s, transform .14s;
+  }
+  .btn-secondary:hover {
+    border-color: var(--ink-muted);
+    color: var(--ink);
+    transform: translateY(-1px);
+  }
+
+  /* ── App preview card ── */
+  .preview-wrap {
+    max-width: 720px;
+    margin: 64px auto 0;
+    padding: 0 5vw;
+  }
+  .preview-card {
+    background: var(--paper-card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    box-shadow: var(--shadow-lg);
+    overflow: hidden;
+  }
+  .preview-topbar {
+    background: var(--paper-warm);
+    border-bottom: 1px solid var(--border);
+    padding: 12px 20px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .dot { width: 10px; height: 10px; border-radius: 50%; }
+  .dot-r { background: #ff5f57; }
+  .dot-y { background: #ffbd2e; }
+  .dot-g { background: #28c840; }
+  .preview-title {
+    font-size: .78rem;
+    color: var(--ink-muted);
+    margin-left: 8px;
+    font-weight: 400;
+  }
+  .invoice-mock {
+    padding: 32px 36px;
+    font-size: .88rem;
+  }
+  .invoice-header {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    margin-bottom: 28px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border);
+  }
+  .invoice-num {
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    color: var(--ink);
+  }
+  .invoice-badge {
+    background: #e8f5ee;
+    color: var(--accent);
+    font-size: .72rem;
+    font-weight: 500;
+    padding: 4px 10px;
+    border-radius: 100px;
+    letter-spacing: .04em;
+  }
+  .invoice-cols {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 24px; margin-bottom: 28px;
+  }
+  .invoice-label {
+    font-size: .68rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 4px;
+    font-weight: 500;
+  }
+  .invoice-val { color: var(--ink); font-weight: 400; }
+  .invoice-val-bold { color: var(--ink); font-weight: 500; }
+  .invoice-table { width: 100%; border-collapse: collapse; }
+  .invoice-table th {
+    font-size: .68rem; letter-spacing: .1em; text-transform: uppercase;
+    color: var(--ink-faint); font-weight: 500;
+    padding: 0 0 10px; text-align: left; border-bottom: 1px solid var(--border);
+  }
+  .invoice-table th:last-child, .invoice-table td:last-child { text-align: right; }
+  .invoice-table td {
+    padding: 10px 0; color: var(--ink);
+    border-bottom: 1px solid var(--paper-warm);
+    font-size: .84rem;
+  }
+  .invoice-total-row td {
+    padding-top: 14px; border-bottom: none;
+    font-weight: 500; font-size: .95rem;
+  }
+  .total-amt { color: var(--accent); font-size: 1.05rem; }
+
+  /* ── Stats strip ── */
+  .stats {
+    display: flex; gap: 0;
+    max-width: 860px; margin: 80px auto 0;
+    padding: 0 5vw;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--paper-card);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+  .stat {
+    flex: 1; padding: 28px 24px;
+    text-align: center;
+    border-right: 1px solid var(--border);
+  }
+  .stat:last-child { border-right: none; }
+  .stat-num {
+    font-family: var(--serif);
+    font-size: 2.2rem;
+    color: var(--ink);
+    display: block;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .stat-label { font-size: .8rem; color: var(--ink-muted); }
+
+  /* ── Features ── */
+  .section { max-width: 1000px; margin: 0 auto; padding: 96px 5vw 0; }
+  .section-eyebrow {
+    font-size: .75rem; font-weight: 500; letter-spacing: .12em;
+    text-transform: uppercase; color: var(--accent);
+    margin-bottom: 12px;
+  }
+  h2 {
+    font-family: var(--serif);
+    font-size: clamp(1.9rem, 4vw, 2.8rem);
+    line-height: 1.18;
+    letter-spacing: -.02em;
+    margin-bottom: 48px;
+  }
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+  }
+  .feature-card {
+    background: var(--paper-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 28px;
+    transition: box-shadow .2s, transform .2s;
+  }
+  .feature-card:hover {
+    box-shadow: var(--shadow);
+    transform: translateY(-2px);
+  }
+  .feature-icon {
+    width: 44px; height: 44px;
+    background: var(--accent-light);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 16px;
+    font-size: 20px;
+  }
+  .feature-card h3 {
+    font-family: var(--serif);
+    font-size: 1.15rem;
+    margin-bottom: 8px;
+    letter-spacing: -.01em;
+  }
+  .feature-card p {
+    font-size: .88rem;
+    color: var(--ink-muted);
+    line-height: 1.65;
+  }
+
+  /* ── How it works ── */
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0;
+    margin-top: 0;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--paper-card);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+  .step {
+    padding: 32px 28px;
+    border-right: 1px solid var(--border);
+    position: relative;
+  }
+  .step:last-child { border-right: none; }
+  .step-num {
+    font-family: var(--serif);
+    font-size: 2.4rem;
+    color: var(--border);
+    line-height: 1;
+    margin-bottom: 12px;
+  }
+  .step h3 {
+    font-size: .95rem;
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
+  .step p { font-size: .83rem; color: var(--ink-muted); line-height: 1.6; }
+
+  /* ── CTA section ── */
+  .cta-section {
+    max-width: 700px;
+    margin: 96px auto 0;
+    padding: 0 5vw;
+    text-align: center;
+  }
+  .cta-card {
+    background: var(--ink);
+    border-radius: 20px;
+    padding: 64px 48px;
+    color: #fff;
+  }
+  .cta-card h2 {
+    font-family: var(--serif);
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    color: #fff;
+    margin-bottom: 16px;
+  }
+  .cta-card p {
+    color: rgba(255,255,255,.6);
+    font-size: 1rem;
+    margin-bottom: 36px;
+    font-weight: 300;
+  }
+  .btn-white {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: #fff;
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: .95rem;
+    font-weight: 500;
+    padding: 14px 32px;
+    border-radius: 100px;
+    text-decoration: none;
+    transition: background .18s, transform .14s;
+  }
+  .btn-white:hover { background: var(--accent-light); transform: translateY(-2px); }
+  .app-store-note {
+    margin-top: 16px;
+    font-size: .78rem;
+    color: rgba(255,255,255,.35);
+  }
+
+  /* ── Footer ── */
+  footer {
+    max-width: 1000px;
+    margin: 80px auto 0;
+    padding: 32px 5vw 48px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .footer-logo {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    color: var(--ink);
+  }
+  .footer-links {
+    display: flex; gap: 24px; list-style: none;
+  }
+  .footer-links a {
+    font-size: .83rem;
+    color: var(--ink-muted);
+    text-decoration: none;
+    transition: color .15s;
+  }
+  .footer-links a:hover { color: var(--ink); }
+  .footer-copy { font-size: .78rem; color: var(--ink-faint); }
+
+  /* ── Animations ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .hero-eyebrow { animation: fadeUp .5s ease both; }
+  h1            { animation: fadeUp .5s .08s ease both; }
+  .hero-sub     { animation: fadeUp .5s .16s ease both; }
+  .hero-actions { animation: fadeUp .5s .24s ease both; }
+  .preview-wrap { animation: fadeUp .6s .32s ease both; }
+
+  @media (max-width: 600px) {
+    .invoice-cols { grid-template-columns: 1fr; gap: 12px; }
+    .stats { flex-direction: column; }
+    .stat { border-right: none; border-bottom: 1px solid var(--border); }
+    .stat:last-child { border-bottom: none; }
+    .steps { grid-template-columns: 1fr; }
+    .step { border-right: none; border-bottom: 1px solid var(--border); }
+    .step:last-child { border-bottom: none; }
+    .cta-card { padding: 40px 24px; }
+    footer { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Nav -->
+<nav>
+  <a class="nav-logo" href="#">MyInvoices</a>
+  <a class="nav-cta" href="https://apps.apple.com/app/myinvoices" target="_blank">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+    Download Free
+  </a>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <span class="hero-eyebrow">For freelancers &amp; independents</span>
+  <h1>Invoice like a pro,<br><em>get paid faster</em></h1>
+  <p class="hero-sub">Track your time, build professional PDF invoices, and send them in seconds — all from your iPhone.</p>
+  <div class="hero-actions">
+    <a class="btn-primary" href="https://apps.apple.com/app/myinvoices" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+      Download on the App Store
+    </a>
+    <a class="btn-secondary" href="#features">See features ↓</a>
+  </div>
+</section>
+
+<!-- Invoice mock preview -->
+<div class="preview-wrap">
+  <div class="preview-card">
+    <div class="preview-topbar">
+      <div class="dot dot-r"></div>
+      <div class="dot dot-y"></div>
+      <div class="dot dot-g"></div>
+      <span class="preview-title">INV-012.pdf</span>
+    </div>
+    <div class="invoice-mock">
+      <div class="invoice-header">
+        <div>
+          <div class="invoice-label">Invoice</div>
+          <div class="invoice-num">INV-012</div>
+        </div>
+        <span class="invoice-badge">SENT</span>
+      </div>
+      <div class="invoice-cols">
+        <div>
+          <div class="invoice-label">From</div>
+          <div class="invoice-val-bold">Jane Cooper</div>
+          <div class="invoice-val" style="color:var(--ink-muted);font-size:.82rem;">jane@studio.co</div>
+        </div>
+        <div>
+          <div class="invoice-label">To</div>
+          <div class="invoice-val-bold">Acme Corp</div>
+          <div class="invoice-val" style="color:var(--ink-muted);font-size:.82rem;">1 Jun – 30 Jun 2025</div>
+        </div>
+      </div>
+      <table class="invoice-table">
+        <thead>
+          <tr>
+            <th>Description</th>
+            <th>Duration</th>
+            <th>Amount</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Brand strategy session</td>
+            <td style="color:var(--ink-muted)">3h 00m</td>
+            <td>€240.00</td>
+          </tr>
+          <tr>
+            <td>Logo design</td>
+            <td style="color:var(--ink-muted)">6h 30m</td>
+            <td>€520.00</td>
+          </tr>
+          <tr>
+            <td>Website review</td>
+            <td style="color:var(--ink-muted)">1h 45m</td>
+            <td>€140.00</td>
+          </tr>
+          <tr class="invoice-total-row">
+            <td colspan="2" style="color:var(--ink-muted);font-size:.82rem;font-weight:400;">Total due</td>
+            <td class="total-amt">€900.00</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- Stats -->
+<div class="stats" style="margin-top:80px;">
+  <div class="stat">
+    <span class="stat-num">30s</span>
+    <span class="stat-label">to create an invoice</span>
+  </div>
+  <div class="stat">
+    <span class="stat-num">PDF</span>
+    <span class="stat-label">professional output</span>
+  </div>
+  <div class="stat">
+    <span class="stat-num">Free</span>
+    <span class="stat-label">to get started</span>
+  </div>
+</div>
+
+<!-- Features -->
+<section class="section" id="features">
+  <div class="section-eyebrow">Everything you need</div>
+  <h2>Built for how you<br>actually work</h2>
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon">⏱</div>
+      <h3>Time tracking</h3>
+      <p>Start a timer with one tap. Pause, resume, and stop. Every session is logged automatically against your client.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📄</div>
+      <h3>PDF invoices</h3>
+      <p>Generate clean, professional PDF invoices from your time logs. Share via email, AirDrop, or any app in seconds.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">👥</div>
+      <h3>Client management</h3>
+      <p>Keep all your clients in one place with their rates, earnings history, and outstanding invoices at a glance.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">✏️</div>
+      <h3>Manual entries</h3>
+      <p>Forgot to start the timer? Log time manually for any date. Mix timer and manual entries on the same invoice.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🏦</div>
+      <h3>Bank details &amp; QR</h3>
+      <p>Your IBAN and bank info print on every invoice. Enable the EPC/SEPA QR code so clients can pay with a scan.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📊</div>
+      <h3>Earnings overview</h3>
+      <p>See total earned, invoiced, paid, and outstanding per client. Know exactly where your money stands.</p>
+    </div>
+  </div>
+</section>
+
+<!-- How it works -->
+<section class="section" style="padding-top:80px;">
+  <div class="section-eyebrow">How it works</div>
+  <h2>Three steps to<br>getting paid</h2>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">01</div>
+      <h3>Track your time</h3>
+      <p>Start the built-in timer when you begin working. Stop it when you're done. Or log hours manually.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <h3>Create an invoice</h3>
+      <p>Select a client, pick a date range, and tap Create. Your sessions become line items automatically.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <h3>Share &amp; get paid</h3>
+      <p>Export the PDF and share it however you like. Mark it paid when the money arrives.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-section">
+  <div class="cta-card">
+    <h2>Start invoicing today</h2>
+    <p>Free to download. No subscription needed to get started.</p>
+    <a class="btn-white" href="https://apps.apple.com/app/myinvoices" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+      Download on the App Store
+    </a>
+    <div class="app-store-note">Available for iPhone · iOS 17+</div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-logo">MyInvoices</div>
+  <ul class="footer-links">
+    <li><a href="#features">Features</a></li>
+    <li><a href="support.html">Support</a></li>
+    <li><a href="privacy.html">Privacy</a></li>
+  </ul>
+  <div class="footer-copy">&copy; 2025 MyInvoices</div>
+</footer>
+
+</body>
+</html>
