@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy — MyInvoices</title>
+<meta name="description" content="MyInvoices privacy policy. We collect no data. Everything stays on your device.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --ink: #0f0e0d;
+    --ink-muted: #6b6660;
+    --ink-faint: #b5b0aa;
+    --paper: #faf9f7;
+    --paper-warm: #f3f0eb;
+    --paper-card: #ffffff;
+    --accent: #1a6b4a;
+    --accent-light: #e8f5ee;
+    --border: #e8e4df;
+    --serif: 'Instrument Serif', Georgia, serif;
+    --sans: 'DM Sans', system-ui, sans-serif;
+    --radius: 12px;
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--sans);
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.6;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 5vw; height: 64px;
+    background: rgba(250,249,247,.92);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: var(--serif); font-size: 1.35rem;
+    color: var(--ink); text-decoration: none;
+  }
+  .nav-back {
+    font-size: .85rem; color: var(--ink-muted);
+    text-decoration: none; display: flex; align-items: center; gap: 6px;
+    transition: color .15s;
+  }
+  .nav-back:hover { color: var(--ink); }
+
+  .page {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 72px 5vw 96px;
+  }
+
+  .eyebrow {
+    display: inline-block; font-size: .75rem; font-weight: 500;
+    letter-spacing: .12em; text-transform: uppercase;
+    color: var(--accent); background: var(--accent-light);
+    padding: 5px 14px; border-radius: 100px; margin-bottom: 20px;
+  }
+
+  h1 {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 5vw, 2.8rem);
+    letter-spacing: -.02em; line-height: 1.15;
+    margin-bottom: 12px;
+  }
+
+  .updated {
+    font-size: .82rem;
+    color: var(--ink-faint);
+    margin-bottom: 48px;
+  }
+
+  /* Big summary card */
+  .summary-card {
+    background: var(--ink);
+    border-radius: 16px;
+    padding: 36px 40px;
+    margin-bottom: 56px;
+    color: #fff;
+  }
+  .summary-card h2 {
+    font-family: var(--serif);
+    font-size: 1.4rem;
+    color: #fff;
+    margin-bottom: 12px;
+  }
+  .summary-card p {
+    color: rgba(255,255,255,.65);
+    font-size: .95rem;
+    font-weight: 300;
+    line-height: 1.75;
+  }
+  .summary-bullets {
+    list-style: none;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .summary-bullets li {
+    display: flex; align-items: flex-start; gap: 10px;
+    font-size: .88rem; color: rgba(255,255,255,.75);
+    line-height: 1.5;
+  }
+  .bullet-icon {
+    flex-shrink: 0;
+    width: 20px; height: 20px;
+    background: var(--accent-light);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: .65rem;
+    color: var(--accent);
+    margin-top: 1px;
+  }
+
+  /* Sections */
+  .policy-section {
+    margin-bottom: 40px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid var(--border);
+  }
+  .policy-section:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+  .policy-section h2 {
+    font-family: var(--serif);
+    font-size: 1.25rem;
+    letter-spacing: -.01em;
+    margin-bottom: 12px;
+    color: var(--ink);
+  }
+  .policy-section p {
+    font-size: .9rem;
+    color: var(--ink-muted);
+    line-height: 1.75;
+  }
+  .policy-section p + p { margin-top: 12px; }
+  .policy-section a { color: var(--accent); text-decoration: none; }
+  .policy-section a:hover { text-decoration: underline; }
+
+  footer {
+    max-width: 680px; margin: 0 auto;
+    padding: 24px 5vw 40px;
+    border-top: 1px solid var(--border);
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 12px;
+  }
+  .footer-logo { font-family: var(--serif); font-size: 1rem; color: var(--ink); }
+  footer a { font-size: .8rem; color: var(--ink-muted); text-decoration: none; }
+  footer a:hover { color: var(--ink); }
+  .footer-copy { font-size: .78rem; color: var(--ink-faint); }
+
+  @media (max-width: 540px) {
+    .summary-card { padding: 28px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">MyInvoices</a>
+  <a class="nav-back" href="index.html">← Back</a>
+</nav>
+
+<div class="page">
+
+  <span class="eyebrow">Privacy Policy</span>
+  <h1>Your data stays on your device.</h1>
+  <p class="updated">Last updated: June 2025</p>
+
+  <!-- Summary card -->
+  <div class="summary-card">
+    <h2>The short version</h2>
+    <p>MyInvoices collects absolutely no personal data. We do not track you, we do not send anything to any server, and we have no way of seeing anything you enter into the app.</p>
+    <ul class="summary-bullets">
+      <li><span class="bullet-icon">✓</span>No data collected or transmitted</li>
+      <li><span class="bullet-icon">✓</span>No analytics or tracking</li>
+      <li><span class="bullet-icon">✓</span>No advertising or third-party SDKs</li>
+      <li><span class="bullet-icon">✓</span>No account or sign-up required</li>
+      <li><span class="bullet-icon">✓</span>Everything stored locally on your device</li>
+    </ul>
+  </div>
+
+  <!-- Full policy -->
+
+  <div class="policy-section">
+    <h2>1. Who we are</h2>
+    <p>MyInvoices is an iOS app developed and published as an independent app. This privacy policy explains how the app handles your information.</p>
+  </div>
+
+  <div class="policy-section">
+    <h2>2. Data we collect</h2>
+    <p>We collect <strong>no data whatsoever</strong>. The app does not collect, store, transmit, or share any personal information, usage data, analytics, crash reports, or any other information from you or your device.</p>
+    <p>All information you enter into MyInvoices — your name, email, bank details, client names, time entries, and invoices — is stored exclusively in local storage on your iPhone using Apple's SwiftData framework and iOS UserDefaults. This data never leaves your device through the app.</p>
+  </div>
+
+  <div class="policy-section">
+    <h2>3. Third-party services</h2>
+    <p>MyInvoices does not integrate any third-party analytics, advertising, crash reporting, or tracking SDKs. There are no third parties receiving any data through the app.</p>
+    <p>The only external service the app communicates with is <strong>Apple's App Store</strong> (StoreKit) solely to verify your in-app purchase. This communication is handled entirely by Apple's own frameworks and is subject to <a href="https://www.apple.com/legal/privacy/" target="_blank">Apple's Privacy Policy</a>.</p>
+  </div>
+
+  <div class="policy-section">
+    <h2>4. iCloud &amp; backups</h2>
+    <p>MyInvoices does not use iCloud sync. However, if you have iCloud Backup enabled on your iPhone (via iOS Settings), Apple may include the app's local data in your device backup. This is controlled entirely by you and Apple — the app itself does not initiate or control any iCloud activity.</p>
+  </div>
+
+  <div class="policy-section">
+    <h2>5. PDF exports</h2>
+    <p>When you export an invoice as a PDF and choose to share it (via email, AirDrop, or another app), that file is shared by you, under your control, using iOS's standard share sheet. MyInvoices has no involvement in or visibility of where you send that file.</p>
+  </div>
+
+  <div class="policy-section">
+    <h2>6. Children's privacy</h2>
+    <p>MyInvoices does not collect any data from anyone, including children under the age of 13. The app is intended for use by adults conducting professional invoicing activity.</p>
+  </div>
+
+  <div class="policy-section">
+    <h2>7. Changes to this policy</h2>
+    <p>If we ever change our data practices, we will update this page and revise the "Last updated" date at the top. Since we collect no data today, any future change that introduces data collection would be a significant update and will be communicated clearly.</p>
+  </div>
+
+  <div class="policy-section">
+    <h2>8. Contact</h2>
+    <p>If you have any questions about this privacy policy, please contact us at <a href="mailto:karel@scrollbye.xyz">karel@scrollbye.xyz</a>.</p>
+  </div>
+
+</div>
+
+<footer>
+  <span class="footer-logo">MyInvoices</span>
+  <a href="index.html">Home</a>
+  
+  <span class="footer-copy">&copy; 2026 KZ</span>
+</footer>
+
+</body>
+</html>
